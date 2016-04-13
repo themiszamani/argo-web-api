@@ -25,7 +25,6 @@ package results
 import (
 	"fmt"
 	"net/http"
-	"strings"
 
 	"github.com/ARGOeu/argo-web-api/app/reports"
 	"github.com/ARGOeu/argo-web-api/respond"
@@ -52,15 +51,15 @@ func HandleSubrouter(s *mux.Router, confhandler *respond.ConfHandler) {
 var appServiceRoutes = []respond.AppRoutes{
 	{"results.services.get", "GET", "/{group_type}/{group_name}/{lgroup_type}/{lgroup_name}/services/{service_type}", ListServiceFlavorResults},
 	{"results.services.list", "GET", "/{group_type}/{group_name}/{lgroup_type}/{lgroup_name}/services", ListServiceFlavorResults},
-	{"reports.services.get", "GET", "/{lgroup_type}/{lgroup_name}/services/{service_type}", ListServiceFlavorResults},
-	{"reports.services.list", "GET", "/{lgroup_type}/{lgroup_name}/services", ListServiceFlavorResults},
+	{"results.services.get", "GET", "/{lgroup_type}/{lgroup_name}/services/{service_type}", ListServiceFlavorResults},
+	{"results.services.list", "GET", "/{lgroup_type}/{lgroup_name}/services", ListServiceFlavorResults},
 }
 
 var appGroupRoutes = []respond.AppRoutes{
 	{"results.endpoint_groups.get", "GET", "/{group_type}/{group_name}/{lgroup_type}/{lgroup_name}", ListEndpointGroupResults},
-	{"reports.endpoint_groups.list", "GET", "/{group_type}/{group_name}/{lgroup_type}", ListEndpointGroupResults},
-	{"reports.groups.get", "GET", "/{group_type}/{group_name}", routeGroup},
-	{"reports.groups.list", "GET", "/{group_type}", routeGroup},
+	{"results.endpoint_groups.list", "GET", "/{group_type}/{group_name}/{lgroup_type}", ListEndpointGroupResults},
+	{"results.groups.get", "GET", "/{group_type}/{group_name}", routeGroup},
+	{"results.groups.list", "GET", "/{group_type}", routeGroup},
 }
 
 var appRoutesV2 = []respond.AppRoutes{
@@ -81,16 +80,11 @@ func routeGroup(r *http.Request, cfg config.Config) (int, http.Header, []byte, e
 	h := http.Header{}
 	output := []byte("")
 	err := error(nil)
-	contentType := "application/xml"
 	charset := "utf-8"
 	//STANDARD DECLARATIONS END
 
 	// Handle response format based on Accept Header
-	// Default is application/xml
-	format := r.Header.Get("Accept")
-	if strings.EqualFold(format, "application/json") {
-		contentType = "application/json"
-	}
+	contentType := r.Header.Get("Accept")
 
 	vars := mux.Vars(r)
 	// Grab Tenant DB configuration from context
@@ -130,8 +124,8 @@ func routeGroup(r *http.Request, cfg config.Config) (int, http.Header, []byte, e
 
 	code = http.StatusNotFound
 	message := "The report " + vars["report_name"] + " does not define any group type: " + vars["group_type"]
-	output, err = createErrorMessage(message, code, format) //Render the response into XML or JSON
-	h.Set("Content-Type", fmt.Sprintf("%s; charset=%s", format, charset))
+	output, err = createErrorMessage(message, code, contentType) //Render the response into XML or JSON
+	h.Set("Content-Type", fmt.Sprintf("%s; charset=%s", contentType, charset))
 	return code, h, output, err
 
 }

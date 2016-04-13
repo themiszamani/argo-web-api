@@ -518,7 +518,7 @@ func (suite *ReportTestSuite) TestCreateReport() {
 	// Prepare the request object
 	request, _ := http.NewRequest("POST", "https://myapi.test.com/api/v2/reports", strings.NewReader(postData))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 
@@ -542,7 +542,7 @@ func (suite *ReportTestSuite) TestCreateReport() {
 	// Prepare the request object using report name as urlvar in url path
 	request, _ = http.NewRequest("GET", "/api/v2/reports/"+newUUID, strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 
@@ -666,7 +666,7 @@ func (suite *ReportTestSuite) TestUpdateReport() {
 	// Prepare the request object
 	request, _ := http.NewRequest("PUT", "/api/v2/reports/eba61a9e-22e9-4521-9e47-ecaa4a494364", strings.NewReader(postData))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 	response := httptest.NewRecorder()
@@ -737,7 +737,7 @@ func (suite *ReportTestSuite) TestUpdateReport() {
 	// Prepare the request object using report name as urlvar in url path
 	request, _ = http.NewRequest("GET", "/api/v2/reports/eba61a9e-22e9-4521-9e47-ecaa4a494364", strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 	// Pass request to controller calling List() handler method
@@ -802,7 +802,7 @@ func (suite *ReportTestSuite) TestWrongUUIDUpdateReport() {
 	// Prepare the request object
 	request, _ := http.NewRequest("PUT", "/api/v2/reports/eba61a9e-22e9-4521-9e47-ecaa4a494364", strings.NewReader(postData))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 	response := httptest.NewRecorder()
@@ -848,7 +848,7 @@ func (suite *ReportTestSuite) TestDeleteReport() {
 	// Prepare the request object
 	request, _ := http.NewRequest("DELETE", "/api/v2/reports/eba61a9e-22e9-4521-9e47-ecaa4a494364", strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 
@@ -869,7 +869,7 @@ func (suite *ReportTestSuite) TestDeleteReport() {
 	// Prepare the request object using report name as urlvar in url path
 	request, _ = http.NewRequest("GET", "/api/v2/reports/eba61a9e-22e9-4521-9e47-ecaa4a494364", strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 	// Pass request to controller calling List() handler method
@@ -949,7 +949,7 @@ func (suite *ReportTestSuite) TestReadOneReport() {
 	// Prepare the request object using report name as urlvar in url path
 	request, _ := http.NewRequest("GET", "/api/v2/reports/eba61a9e-22e9-4521-9e47-ecaa4a494364", strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 	response := httptest.NewRecorder()
@@ -1073,7 +1073,7 @@ func (suite *ReportTestSuite) TestReadReports() {
 	// Prepare the request object
 	request, _ := http.NewRequest("GET", "/api/v2/reports", strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 	response := httptest.NewRecorder()
@@ -1096,7 +1096,7 @@ func (suite *ReportTestSuite) TestCreateUnauthorized() {
 	// Prepare the request object (use id2 for path)
 	request, _ := http.NewRequest("POST", "/api/v2/reports", strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "F00T0K3N")
 
@@ -1118,7 +1118,7 @@ func (suite *ReportTestSuite) TestUpdateUnauthorized() {
 	// Prepare the request object
 	request, _ := http.NewRequest("PUT", "/api/v2/reports/eba61a9e-22e9-4521-9e47-ecaa4a494360", strings.NewReader("{}"))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "F00T0K3N")
 
@@ -1140,7 +1140,7 @@ func (suite *ReportTestSuite) TestDeleteUnauthorized() {
 	// Prepare the request object
 	request, _ := http.NewRequest("DELETE", "/api/v2/reports/eba61a9e-22e9-4521-9e47-ecaa4a494360", strings.NewReader("{}"))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "F00T0K3N")
 
@@ -1162,7 +1162,7 @@ func (suite *ReportTestSuite) TestCreateBadJson() {
 	// Prepare the request object
 	request, _ := http.NewRequest("POST", "/api/v2/reports", strings.NewReader("{ bad json"))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 
@@ -1184,7 +1184,7 @@ func (suite *ReportTestSuite) TestUpdateBadJson() {
 	// Prepare the request object
 	request, _ := http.NewRequest("PUT", "/api/v2/reports/Re[prt_A", strings.NewReader("{ bad json"))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 
@@ -1206,7 +1206,7 @@ func (suite *ReportTestSuite) TestListOneNotFound() {
 	// Prepare the request object
 	request, _ := http.NewRequest("GET", "/api/v2/reports/WRONG-UUID-123-124123", strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 
@@ -1227,7 +1227,7 @@ func (suite *ReportTestSuite) TestUpdateNotFound() {
 	// Prepare the request object
 	request, _ := http.NewRequest("PUT", "/api/v2/reports/WRONG-UUID-123-124123", strings.NewReader("{}"))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 
@@ -1249,7 +1249,7 @@ func (suite *ReportTestSuite) TestDeleteNotFound() {
 	// Prepare the request object
 	request, _ := http.NewRequest("DELETE", "/api/v2/reports/WRONG-UUID-123-124123", strings.NewReader(""))
 	// add the content-type header to application/json
-	request.Header.Set("Accept", "application/json;")
+	request.Header.Set("Accept", "application/json")
 	// add the authentication token which is seeded in testdb
 	request.Header.Set("x-api-key", "C4PK3Y")
 
